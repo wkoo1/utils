@@ -3,7 +3,6 @@ import shutil
 import os
 import glob
 
-
 # def copy_file(old_path, new_path):
 new_path = "D:\\oukai\\dataset\\cityscapes\\gtFine\\test_depth"
 #old_path_pure = 'D:\\oukai\\dataset\\cityscapes\\gtFine\\val\\frankfurt'

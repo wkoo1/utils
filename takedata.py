@@ -4,9 +4,9 @@ import os
 import glob
 
 # def copy_file(old_path, new_path):
-new_path = "D:\\oukai\\dataset\\cityscapes\\gtFine\\test_depth"
+new_path = "D:/oukai/dataset/Camus/test_ED"
 #old_path_pure = 'D:\\oukai\\dataset\\cityscapes\\gtFine\\val\\frankfurt'
-old_path = 'D:\\oukai\\dataset\\cityscapes\\gtFine\\test\\munich\\**_instanceIds.png'
+old_path = 'D:/oukai/dataset/Camus/test/**_ED.mhd'
 if not os.path.exists(new_path):
     os.makedirs(new_path)
 #filelist = os.listdir(old_path)  # 列出该目录下的所有文件,listdir返回的是文件列表是不包含路径的。

@@ -19,8 +19,8 @@ def search_file_suffix(dirPath, suffix):
             shutil.copy(src, dst)
 
 if __name__ == "__main__":
-    dirPath = 'D:/oukai/dataset/Camus/testing'
-    suffix = 'raw'
-    new_path = "D:/oukai/dataset/Camus/test"
+    dirPath = 'D:/oukai/dataset/Camus/train_labels_ES_LVendo_png'
+    suffix = 'png'
+    new_path = "D:/oukai/dataset/Camus/train_labels_EDES_LVendo_png"
     search_file_suffix(dirPath, suffix)
 

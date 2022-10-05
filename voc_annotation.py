@@ -18,8 +18,8 @@ VOCdevkit_path  = 'VOCdevkit'
 if __name__ == "__main__":
     random.seed(0)
     print("Generate txt in ImageSets.")
-    segfilepath     = os.path.join(VOCdevkit_path, 'D:\\oukai\\dataset\\Camus\\train_labels_EDES_LVendo_png')
-    saveBasePath    = os.path.join(VOCdevkit_path, 'D:\\oukai\\dataset\\Camus')
+    segfilepath     = os.path.join(VOCdevkit_path, 'D:\\oukai\\dataset\\Camus\\train_labels_ED_LVendo_png')
+    saveBasePath    = os.path.join(VOCdevkit_path, 'D:\\oukai\\dataset\\Camus\\CrossTestED')
     
     temp_seg = os.listdir(segfilepath)
     total_seg = []

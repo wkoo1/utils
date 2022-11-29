@@ -1,19 +1,18 @@
-# -*- coding: utf-8 -*-
-# Author: MindBin
- 
 import os
-# 导入os模块
-command_list = 'pip list' 
-command_install = 'pip install '
-data = os.popen(command_list) 
-info = data.readlines()  #读取命令行的输出到一个list
-# 删除表头信息
-del info[0]
-del info[0]
-for line in info:  #按行遍历
-    # 用" "分割每行，列表的第一个就是包名
-    package = line.split(" ")[0]
-    print("",end="")
-    print("\033[1;32;40m%s\033[0m"%("正在检查更新"+package))
-    os.system(command_install+package+" --upgrade")
-print("更新完毕")
+def pip_update():
+    model_ls = os.popen('pip list -o').readlines()  # 这样才能拿到命令行的返回值.
+    # 第一行是名称,第二行是分割线
+    up_list = [i.split()[0] for i in model_ls[2:-1]]  # 库信息的排布:'numpy  旧版本 新版本 xx' 按空格分割拿到包名就好
+    print(f"可升级的库有:{up_list}")
+    for item in up_list:
+        if not item.startswith("\\x") and item != 'pip':  # 抓到一个异常数据： '\x1b[0m' . 自动更新pip容易出问题.
+            try:
+                print('-' * 50, f'开始升级库:{item}', sep='\n')
+                os.system(f"pip install --upgrade {item}")
+            except:
+                print(f"升级错误:{item}")
+
+
+if __name__ == '__main__':
+    pip_update()
+

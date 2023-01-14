@@ -3,7 +3,7 @@ import cv2
 import os
 
 import cv2 as cv
-cap = cv.VideoCapture('20160115_2CV.avi')
+cap = cv.VideoCapture('Z:/x/STJ/video_edge/build/test8min-outp.avi')
 fourcc = cv.VideoWriter_fourcc(*'MP42') 
 """
 cv2.VideoWriter_fourcc(‘P’,‘I’,‘M’,‘1’) = MPEG-1 codec 
@@ -16,7 +16,7 @@ cv2.VideoWriter_fourcc(‘I’, ‘2’, ‘6’, ‘3’) = H263I codec
 cv2.VideoWriter_fourcc(‘F’, ‘L’, ‘V’, ‘1’) = FLV1 codec
 """
 width, height = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-out = cv.VideoWriter('0115.mp4', fourcc, 20.0, (width,  height))
+out = cv.VideoWriter('Z:/x/STJ/video_edge/build/test8min-outp.mp4', fourcc, 20.0, (width,  height))
 while cap.isOpened():
     ret, frame = cap.read()
     # 如果正确读取帧，ret为True

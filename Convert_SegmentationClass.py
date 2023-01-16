@@ -13,7 +13,7 @@ from tqdm import tqdm
 #                                   处理后的标签为灰度图，如果设置的值太小会看不见具体情况。
 #-----------------------------------------------------------------------------------#
 Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\Camus\\train_labels_ES_png"
-Out_SegmentationClass_path      = "D:\\oukai\\dataset\\Camus\\train_labels_ES_LVendo_png"
+Out_SegmentationClass_path      = "D:\\oukai\\dataset\\Camus\\train_labels_ES_LVepi2_png"
 
 #-----------------------------------------------------------------------------------#
 #   Origin_Point_Value  原始标签对应的像素点值
@@ -34,7 +34,7 @@ Out_SegmentationClass_path      = "D:\\oukai\\dataset\\Camus\\train_labels_ES_LV
 # Out_Point_Value                 = np.array([0,0,0,0,0,0,0,1,2,0,0, 3, 4, 5, 0, 0, 0, 6, 0, 7, 8, 9, 10,11,12,13,14,15,16,0, 0, 17,18,19])
 
 Origin_Point_Value              = np.array([0,1,2,3])
-Out_Point_Value                 = np.array([0,1,0,0])
+Out_Point_Value                 = np.array([0,1,1,0])
 
 if __name__ == "__main__":
     # if not os.path.exists(Out_SegmentationClass_path):

@@ -12,8 +12,18 @@ from tqdm import tqdm
 #   Out_SegmentationClass_path      输出标签所在的路径
 #                                   处理后的标签为灰度图，如果设置的值太小会看不见具体情况。
 #-----------------------------------------------------------------------------------#
-Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\nyuv2\\labels40"
+# Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\nyuv2\\labels40"
 Out_SegmentationClass_path      = "D:\\oukai\\dataset\\cityscapes\\gtFine\\trainval_labels19_nobackground"
+
+# 定义文本文件路径
+txt_file_path = "D:\\oukai\\dataset\\SUNRGBD\\test_label_png.txt"
+
+# 从文本文件中读取路径
+with open(txt_file_path, 'r') as file:
+    paths = file.readlines()
+
+# 去除每个路径的换行符
+Origin_SegmentationClass_path = [path.strip() for path in paths]
 
 #-----------------------------------------------------------------------------------#
 #   Origin_Point_Value  原始标签对应的像素点值
@@ -43,7 +53,7 @@ if __name__ == "__main__":
     #---------------------------#
     #   遍历标签并赋值
     #---------------------------#
-    png_names = os.listdir(Origin_SegmentationClass_path)
+    # png_names = os.listdir(Origin_SegmentationClass_path)
     # print("正在遍历全部标签。")
     # for png_name in tqdm(png_names):
     #     png     = Image.open(os.path.join(Origin_SegmentationClass_path, png_name))
@@ -64,8 +74,8 @@ if __name__ == "__main__":
     #-------------------------------------#
     print("正在统计输出的图片每个像素点的数量。")
     classes_nums        = np.zeros([256], np.int)
-    for png_name in tqdm(png_names):
-        png_file_name   = os.path.join(Origin_SegmentationClass_path, png_name)
+    for png_name in tqdm(Origin_SegmentationClass_path):
+        png_file_name   = os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png")
         if not os.path.exists(png_file_name):
             raise ValueError("未检测到标签图片%s，请查看具体路径下文件是否存在以及后缀是否为png。"%(png_file_name))
         

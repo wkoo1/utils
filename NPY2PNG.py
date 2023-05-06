@@ -20,8 +20,8 @@ for npy_file in tqdm(npy_files):
     data = np.load(os.path.join(input_folder, npy_file))
 
     # 将数据缩放到0-255之间的整数
-    data = (data - data.min()) / (data.max() - data.min()) * 255
-    data = data.astype(np.uint8)
+    # data = (data - data.min()) / (data.max() - data.min()) * 255
+    # data = data.astype(np.uint8)
     # print(data.shape)
     # 创建PIL Image对象并保存为PNG格式
     img = Image.fromarray(data)

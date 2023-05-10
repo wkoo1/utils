@@ -13,10 +13,11 @@ from tqdm import tqdm
 #                                   处理后的标签为灰度图，如果设置的值太小会看不见具体情况。
 #-----------------------------------------------------------------------------------#
 # Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\nyuv2\\labels40"
-Out_SegmentationClass_path      = "D:\\oukai\\dataset\\cityscapes\\gtFine\\trainval_labels19_nobackground"
+# Out_SegmentationClass_path      = "D:\\oukai\\dataset\\cityscapes\\gtFine\\trainval_labels19_nobackground"
 
 # 定义文本文件路径
-txt_file_path = "D:\\oukai\\dataset\\SUNRGBD\\test_label_png.txt"
+# txt_file_path = "D:\\oukai\\dataset\\SUNRGBD\\test_label_png.txt"
+txt_file_path = "D:\\oukai\\dataset\\nyuv2\\test.txt"
 
 # 从文本文件中读取路径
 with open(txt_file_path, 'r') as file:
@@ -40,11 +41,11 @@ Origin_SegmentationClass_path = [path.strip() for path in paths]
 #   Origin_Point_Value = np.array([[0, 0, 0], [1, 1, 1]])；Out_Point_Value = np.array([0, 1])
 #-----------------------------------------------------------------------------------#
 # cityscapes dataset
-Origin_Point_Value              = np.array([0  ,1  ,2  ,3  ,4  ,5  ,6  ,7,8,9  ,10 ,11,12,13, 14 , 15 , 17 ,18 ,19,20,21,22,23,24,25,26,27,28,29 , 30 , 31,32,33])
-Out_Point_Value                 = np.array([255,255,255,255,255,255,255,0,1,255,255, 2, 3, 4, 255, 255, 5, 255, 6, 7, 8, 9,10,11,12,13,14,15,255, 255, 16,17,18])
+# Origin_Point_Value              = np.array([0  ,1  ,2  ,3  ,4  ,5  ,6  ,7,8,9  ,10 ,11,12,13, 14 , 15 , 17 ,18 ,19,20,21,22,23,24,25,26,27,28,29 , 30 , 31,32,33])
+# Out_Point_Value                 = np.array([255,255,255,255,255,255,255,0,1,255,255, 2, 3, 4, 255, 255, 5, 255, 6, 7, 8, 9,10,11,12,13,14,15,255, 255, 16,17,18])
 
-# Origin_Point_Value              = np.array([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19])
-# Out_Point_Value                 = np.array([0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18])
+Origin_Point_Value              = np.array([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37])
+Out_Point_Value                 = np.array([255,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36])
 
 if __name__ == "__main__":
     # if not os.path.exists(Out_SegmentationClass_path):
@@ -55,8 +56,8 @@ if __name__ == "__main__":
     #---------------------------#
     # png_names = os.listdir(Origin_SegmentationClass_path)
     # print("正在遍历全部标签。")
-    # for png_name in tqdm(png_names):
-    #     png     = Image.open(os.path.join(Origin_SegmentationClass_path, png_name))
+    # for png_name in tqdm(Origin_SegmentationClass_path):
+    #     png     = Image.open(os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png"))
     #     w, h    = png.size
         
     #     png     = np.array(png)
@@ -68,14 +69,15 @@ if __name__ == "__main__":
     #         out_png[mask] = Out_Point_Value[i]
         
     #     out_png = Image.fromarray(np.array(out_png, np.uint8))
-    #     out_png.save(os.path.join(Out_SegmentationClass_path, png_name))
+    #     out_png.save(os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png"))
     #-------------------------------------#
     #   统计输出，各个像素点的值得个数
     #-------------------------------------#
     print("正在统计输出的图片每个像素点的数量。")
     classes_nums        = np.zeros([256], np.int)
     for png_name in tqdm(Origin_SegmentationClass_path):
-        png_file_name   = os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png")
+        # png_file_name   = os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png")
+        png_file_name   = os.path.join("D:\\oukai\\dataset\\nyuv2\\labels40_ignore255", png_name +".png")
         if not os.path.exists(png_file_name):
             raise ValueError("未检测到标签图片%s，请查看具体路径下文件是否存在以及后缀是否为png。"%(png_file_name))
         

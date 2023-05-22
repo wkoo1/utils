@@ -16,8 +16,8 @@ from tqdm import tqdm
 # Out_SegmentationClass_path      = "D:\\oukai\\dataset\\cityscapes\\gtFine\\trainval_labels19_nobackground"
 
 # 定义文本文件路径
-# txt_file_path = "D:\\oukai\\dataset\\SUNRGBD\\test_label_png.txt"
-txt_file_path = "D:\\oukai\\dataset\\nyuv2\\test.txt"
+txt_file_path = "D:\\oukai\\dataset\\SUNRGBD\\train_label_png.txt"
+# txt_file_path = "D:\\oukai\\dataset\\nyuv2\\test.txt"
 
 # 从文本文件中读取路径
 with open(txt_file_path, 'r') as file:
@@ -56,28 +56,28 @@ if __name__ == "__main__":
     #---------------------------#
     # png_names = os.listdir(Origin_SegmentationClass_path)
     # print("正在遍历全部标签。")
-    # for png_name in tqdm(Origin_SegmentationClass_path):
-    #     png     = Image.open(os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png"))
-    #     w, h    = png.size
+    for png_name in tqdm(Origin_SegmentationClass_path):
+        png     = Image.open(os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png"))
+        w, h    = png.size
         
-    #     png     = np.array(png)
-    #     out_png = np.zeros([h, w])
-    #     for i in range(len(Origin_Point_Value)):
-    #         mask = png[:, :] == Origin_Point_Value[i]
-    #         if len(np.shape(mask)) > 2:
-    #             mask = mask.all(-1)
-    #         out_png[mask] = Out_Point_Value[i]
+        png     = np.array(png)
+        out_png = np.zeros([h, w])
+        for i in range(len(Origin_Point_Value)):
+            mask = png[:, :] == Origin_Point_Value[i]
+            if len(np.shape(mask)) > 2:
+                mask = mask.all(-1)
+            out_png[mask] = Out_Point_Value[i]
         
-    #     out_png = Image.fromarray(np.array(out_png, np.uint8))
-    #     out_png.save(os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png"))
+        out_png = Image.fromarray(np.array(out_png, np.uint8))
+        out_png.save(os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png"))
     #-------------------------------------#
     #   统计输出，各个像素点的值得个数
     #-------------------------------------#
     print("正在统计输出的图片每个像素点的数量。")
     classes_nums        = np.zeros([256], np.int)
     for png_name in tqdm(Origin_SegmentationClass_path):
-        # png_file_name   = os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png")
-        png_file_name   = os.path.join("D:\\oukai\\dataset\\nyuv2\\labels40_ignore255", png_name +".png")
+        png_file_name   = os.path.join("D:\\oukai\\dataset\\SUNRGBD\\", png_name +".png")
+        # png_file_name   = os.path.join("D:\\oukai\\dataset\\nyuv2\\labels40_ignore255", png_name +".png")
         if not os.path.exists(png_file_name):
             raise ValueError("未检测到标签图片%s，请查看具体路径下文件是否存在以及后缀是否为png。"%(png_file_name))
         

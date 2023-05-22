@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 # 指定输入文件夹路径和txt文件路径
 input_folder = 'D:/oukai/dataset/SUNRGBD'
-npy_list_path = 'D:/oukai/dataset/SUNRGBD/test_label.txt'
+npy_list_path = 'D:/oukai/dataset/SUNRGBD/train_label.txt'
 
 # 遍历txt文件中的所有NPY文件路径
 with open(npy_list_path, 'r') as f:

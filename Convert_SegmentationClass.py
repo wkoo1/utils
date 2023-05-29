@@ -14,8 +14,10 @@ from tqdm import tqdm
 #-----------------------------------------------------------------------------------#
 # Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\nyuv2\\labels40"
 # Out_SegmentationClass_path      = "D:\\oukai\\dataset\\nyuv2\\\\labels40_ignore255"
-Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\cityscapes\\gtFine\\val_labels"
-Out_SegmentationClass_path      = "D:\\oukai\\dataset\\cityscapes\\gtFine\\val_labels19_nobackground"
+# Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\cityscapes\\gtFine\\val_labels"
+# Out_SegmentationClass_path      = "D:\\oukai\\dataset\\cityscapes\\gtFine\\val_labels19_nobackground"
+Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\ADE20K\\train\\labels"
+
 #-----------------------------------------------------------------------------------#
 #   Origin_Point_Value  原始标签对应的像素点值
 #   Out_Point_Value     输出标签对应的像素点值
@@ -45,28 +47,28 @@ if __name__ == "__main__":
     #   遍历标签并赋值
     #---------------------------#
     png_names = os.listdir(Origin_SegmentationClass_path)
-    print("正在遍历全部标签。")
-    for png_name in tqdm(png_names):
-        png     = Image.open(os.path.join(Origin_SegmentationClass_path, png_name))
-        w, h    = png.size
+    # print("正在遍历全部标签。")
+    # for png_name in tqdm(png_names):
+    #     png     = Image.open(os.path.join(Origin_SegmentationClass_path, png_name))
+    #     w, h    = png.size
         
-        png     = np.array(png)
-        out_png = np.zeros([h, w])
-        for i in range(len(Origin_Point_Value)):
-            mask = png[:, :] == Origin_Point_Value[i]
-            if len(np.shape(mask)) > 2:
-                mask = mask.all(-1)
-            out_png[mask] = Out_Point_Value[i]
+    #     png     = np.array(png)
+    #     out_png = np.zeros([h, w])
+    #     for i in range(len(Origin_Point_Value)):
+    #         mask = png[:, :] == Origin_Point_Value[i]
+    #         if len(np.shape(mask)) > 2:
+    #             mask = mask.all(-1)
+    #         out_png[mask] = Out_Point_Value[i]
         
-        out_png = Image.fromarray(np.array(out_png, np.uint8))
-        out_png.save(os.path.join(Out_SegmentationClass_path, png_name))
+    #     out_png = Image.fromarray(np.array(out_png, np.uint8))
+    #     out_png.save(os.path.join(Out_SegmentationClass_path, png_name))
     #-------------------------------------#
     #   统计输出，各个像素点的值得个数
     #-------------------------------------#
     print("正在统计输出的图片每个像素点的数量。")
     classes_nums        = np.zeros([256], np.int)
     for png_name in tqdm(png_names):
-        png_file_name   = os.path.join(Out_SegmentationClass_path, png_name)
+        png_file_name   = os.path.join(Origin_SegmentationClass_path, png_name)
         if not os.path.exists(png_file_name):
             raise ValueError("未检测到标签图片%s，请查看具体路径下文件是否存在以及后缀是否为png。"%(png_file_name))
         

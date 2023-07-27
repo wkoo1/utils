@@ -16,7 +16,7 @@ from tqdm import tqdm
 # Out_SegmentationClass_path      = "D:\\oukai\\dataset\\nyuv2\\\\labels40_ignore255"
 # Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\cityscapes\\gtFine\\val_labels"
 # Out_SegmentationClass_path      = "D:\\oukai\\dataset\\cityscapes\\gtFine\\val_labels19_nobackground"
-Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\ADE20K\\train\\labels"
+Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\ADE20K\\val\\labels2"
 
 #-----------------------------------------------------------------------------------#
 #   Origin_Point_Value  原始标签对应的像素点值
@@ -79,7 +79,10 @@ if __name__ == "__main__":
     print('-' * 37)
     print("| %15s | %15s |"%("Key", "Value"))
     print('-' * 37)
+    n = 0
     for i in range(256):
         if classes_nums[i] > 0:
             print("| %15s | %15s |"%(str(i), str(classes_nums[i])))
             print('-' * 37)
+            n += 1
+    print("共计%d个像素点的值。"%(n))

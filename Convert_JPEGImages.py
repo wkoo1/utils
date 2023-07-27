@@ -13,28 +13,29 @@ from tqdm import tqdm
 #--------------------------------------------------------#
 
 # JPG---->PNG
-Origin_JPEGImages_path   = "D:\\oukai\\dataset\\cityscapes\\leftImg8bit\\test_all"
-Out_JPEGImages_path      = "D:\\oukai\\dataset\\cityscapes\\leftImg8bit\\test_jpg"
 
-if __name__ == "__main__":
-    if not os.path.exists(Out_JPEGImages_path):
-        os.makedirs(Out_JPEGImages_path)
+# Origin_JPEGImages_path   = "D:\\oukai\\dataset\\cityscapes\\leftImg8bit\\test_all"
+# Out_JPEGImages_path      = "D:\\oukai\\dataset\\cityscapes\\leftImg8bit\\test_jpg"
 
-    #---------------------------#
-    #   遍历标签并赋值
-    #---------------------------#
-    image_names = os.listdir(Origin_JPEGImages_path)
-    print("正在遍历全部图片。")
-    for image_name in tqdm(image_names):
-        image   = Image.open(os.path.join(Origin_JPEGImages_path, image_name))
-        image   = image.convert('RGB')
-        image.save(os.path.join(Out_JPEGImages_path, os.path.splitext(image_name)[0] + '.jpg'))
+# if __name__ == "__main__":
+#     if not os.path.exists(Out_JPEGImages_path):
+#         os.makedirs(Out_JPEGImages_path)
+
+#     #---------------------------#
+#     #   遍历标签并赋值
+#     #---------------------------#
+#     image_names = os.listdir(Origin_JPEGImages_path)
+#     print("正在遍历全部图片。")
+#     for image_name in tqdm(image_names):
+#         image   = Image.open(os.path.join(Origin_JPEGImages_path, image_name))
+#         image   = image.convert('RGB')
+#         image.save(os.path.join(Out_JPEGImages_path, os.path.splitext(image_name)[0] + '.jpg'))
 
 
-"""
+
 #24bit---->8bit
-Origin_JPEGImages_path   = "D:\\oukai\\dataset\\CamVid\\trainval_labels"
-Out_JPEGImages_path      = "D:\\oukai\\dataset\\CamVid\\trainval_labels_8bit"
+Origin_JPEGImages_path   = "D:\\oukai\\dataset\\ADE20K\\val\\labels"
+Out_JPEGImages_path      = "D:\\oukai\\dataset\\ADE20K\\val\\labels2"
 
 if __name__ == "__main__":
     if not os.path.exists(Out_JPEGImages_path):
@@ -49,4 +50,4 @@ if __name__ == "__main__":
         image   = Image.open(os.path.join(Origin_JPEGImages_path, image_name))
         image   = image.convert('L')
         image.save(os.path.join(Out_JPEGImages_path, os.path.splitext(image_name)[0] + '.png'))
-"""
+

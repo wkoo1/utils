@@ -1,7 +1,7 @@
 import os
 import sys
 
-path = r'D:/oukai\dataset/Camus/train_labels_ES_png/'
+path = r'D:/oukai\dataset/Camus/label_ES_LVepi_png/'
 
 f = os.listdir(path)
  

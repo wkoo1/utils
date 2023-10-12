@@ -17,8 +17,9 @@ class MaskVisualizer:
             self.colors = list(map(lambda x: colorsys.hsv_to_rgb(*x), hsv_tuples))
             self.colors = list(map(lambda x: (int(x[0] * 255), int(x[1] * 255), int(x[2] * 255)), self.colors))
         # self.class_names = ['class_' + str(i) for i in range(num_classes)]
-        self.class_names     = ["road","sidewalk", "building", "wall", "fence", "pole", "traffic light", "traffic sign", "vegetation", "terrain", "sky", "person", 'rider', 'car', 'truck', 'bus', 'train', 'motorcycle', 'bicycle',"ignore"]
+        # self.class_names     = ["road","sidewalk", "building", "wall", "fence", "pole", "traffic light", "traffic sign", "vegetation", "terrain", "sky", "person", 'rider', 'car', 'truck', 'bus', 'train', 'motorcycle', 'bicycle',"ignore"]
         # self.class_names = ['wall', 'floor', 'cabinet', 'bed', 'chair', 'sofa', 'table', 'door', 'window', 'bookshelf', 'picture', 'counter', 'blinds', 'desk', 'shelves', 'curtain', 'dresser', 'pillow', 'mirror', 'floor mat', 'clothes', 'ceiling', 'books', 'refridgerator', 'television', 'paper', 'towel', 'shower curtain', 'box', 'whiteboard', 'person', 'night stand', 'toilet', 'sink', 'lamp', 'bathtub', 'bag', 'otherstructure', 'otherfurniture', 'otherprop',"ignore"]
+        self.class_names     = ["background","LVendo"]
     def visualize(self, image_folder, mask_folder, output_folder):
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
@@ -30,16 +31,19 @@ class MaskVisualizer:
                 print(filename)
                 # 获取掩码文件名
             #cityscapes dataset
-            prefix_len1 = len('frankfurt_000000_000294')  # 设置前缀的长度
-            prefix_len2 = len('lindau_000000_000019')  # 设置前缀的长度
-            prefix_len3 = len('munster_000031_000019')  # 设置前缀的长度
-            for name in os.listdir(mask_folder):
-                if name[:prefix_len1] == filename[:prefix_len1] or name[:prefix_len2] == filename[:prefix_len2] or name[:prefix_len3] == filename[:prefix_len3]:
-                    mask_filename = name
-                    break
+            # prefix_len1 = len('frankfurt_000000_000294')  # 设置前缀的长度
+            # prefix_len2 = len('lindau_000000_000019')  # 设置前缀的长度
+            # prefix_len3 = len('munster_000031_000019')  # 设置前缀的长度
+            # for name in os.listdir(mask_folder):
+            #     if name[:prefix_len1] == filename[:prefix_len1] or name[:prefix_len2] == filename[:prefix_len2] or name[:prefix_len3] == filename[:prefix_len3]:
+            #         mask_filename = name
+            #         break
             #nyuv2 dataset
             # mask_filename = os.path.splitext(filename)[0] + '.png'
             # print(mask_filename)
+            #camus dataset
+            mask_filename = os.path.splitext(filename)[0] + '.png'
+            print(mask_filename)
             # 检查掩码文件是否存在
             if os.path.exists(os.path.join(mask_folder, mask_filename)):
                 # 读取掩码图像
@@ -61,16 +65,20 @@ class MaskVisualizer:
                     # 保存融合后的图像
                     output_filename = os.path.join(output_folder, filename)
                     cv2.imwrite(output_filename, blended)
+                    print('Saved {}.'.format(output_filename))
                 else:
                     print('Mask file not found for image {}.'.format(filename))
         print('Done.')
 
 if __name__ == '__main__':
-    image_folder = 'Z:/x/dataset/cityscapes/leftImg8bit/val_jpg'
-    mask_folder = 'Z:/x/dataset/cityscapes/gtFine/val_labels19_nobackground'
-    output_folder = 'Z:/x/dataset/cityscapes/colorgroundtruth'
+    # image_folder = 'Z:/x/dataset/cityscapes/leftImg8bit/val_jpg'
+    # mask_folder = 'Z:/x/dataset/cityscapes/gtFine/val_labels19_nobackground'
+    # output_folder = 'Z:/x/dataset/cityscapes/colorgroundtruth'
     # image_folder = 'Z:/x/dataset/nyuv2/images'
     # mask_folder = 'Z:/x/dataset/nyuv2/labels40'
     # output_folder = 'Z:/x/dataset/nyuv2/colorgroundtruth'
+    image_folder = 'Z:/x/dataset\\Camus\\train_ED_jpg'
+    mask_folder = 'Z:/x/mycode/MFRAUnet-Camus/miou_out/detection-results'
+    output_folder = 'Z:/x/dataset\\Camus\\colorlabel'
     visualizer = MaskVisualizer()
     visualizer.visualize(image_folder, mask_folder, output_folder)

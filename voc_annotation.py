@@ -13,13 +13,13 @@ train_percent       = 0.9
 #   指向VOC数据集所在的文件夹
 #   默认指向根目录下的VOC数据集
 #-------------------------------------------------------#
-VOCdevkit_path  = 'VOCdevkit'
+VOCdevkit_path  = 'D:\\oukai\\dataset\\Camus'
 
 if __name__ == "__main__":
     random.seed(0)
     print("Generate txt in ImageSets.")
-    segfilepath     = os.path.join(VOCdevkit_path, 'D:\\oukai\\dataset\\Camus\\train_labels_ED_LVendo_png')
-    saveBasePath    = os.path.join(VOCdevkit_path, 'D:\\oukai\\dataset\\Camus\\CrossTestED')
+    segfilepath     = os.path.join(VOCdevkit_path, 'label_ES_LVendo_png')
+    saveBasePath    = os.path.join(VOCdevkit_path, 'CrossTestES')
     
     temp_seg = os.listdir(segfilepath)
     total_seg = []

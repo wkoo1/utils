@@ -8,7 +8,7 @@ class MaskVisualizer:
     def __init__(self, num_classes=19+1):
         self.num_classes = num_classes
         if self.num_classes <= 21:
-            self.colors = [ (128, 0, 0), (0, 128, 0), (128, 128, 0), (0, 0, 128), (128, 0, 128), (0, 128, 128), 
+            self.colors = [ (0,0,0), (128, 0, 0), (0, 128, 0), (128, 128, 0), (0, 0, 128), (128, 0, 128), (0, 128, 128), 
                             (128, 128, 128), (64, 0, 0), (192, 0, 0), (64, 128, 0), (192, 128, 0), (64, 0, 128), (192, 0, 128), 
                             (64, 128, 128), (192, 128, 128), (0, 64, 0), (128, 64, 0), (0, 192, 0), (128, 192, 0), (0, 64, 128), 
                             (128, 64, 12)]
@@ -77,8 +77,9 @@ if __name__ == '__main__':
     # image_folder = 'Z:/x/dataset/nyuv2/images'
     # mask_folder = 'Z:/x/dataset/nyuv2/labels40'
     # output_folder = 'Z:/x/dataset/nyuv2/colorgroundtruth'
-    image_folder = 'Z:/x/dataset\\Camus\\train_ED_jpg'
-    mask_folder = 'Z:/x/mycode/MFRAUnet-Camus/miou_out/detection-results'
-    output_folder = 'Z:/x/dataset\\Camus\\colorlabel'
+    image_folder = 'Z:/x/dataset\\Camus\\train_ES_jpg'
+    mask_folder = 'Z:/x/dataset\\Camus\\label_ES_LVepi_png'
+    # mask_folder = 'Z:/x/mycode/MFRAUnet-Camus/miou_out/detection-results'
+    output_folder = 'Z:/x/dataset\\Camus\\ES_LVepi_color'
     visualizer = MaskVisualizer()
     visualizer.visualize(image_folder, mask_folder, output_folder)

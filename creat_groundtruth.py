@@ -5,7 +5,7 @@ import numpy as np
 from tqdm import tqdm
 
 class MaskVisualizer:
-    def __init__(self, num_classes=19+1):
+    def __init__(self, num_classes=6+1):
         self.num_classes = num_classes
         if self.num_classes <= 21:
             self.colors = [ (0,0,0), (128, 0, 0), (0, 128, 0), (128, 128, 0), (0, 0, 128), (128, 0, 128), (0, 128, 128), 
@@ -19,7 +19,8 @@ class MaskVisualizer:
         # self.class_names = ['class_' + str(i) for i in range(num_classes)]
         # self.class_names     = ["road","sidewalk", "building", "wall", "fence", "pole", "traffic light", "traffic sign", "vegetation", "terrain", "sky", "person", 'rider', 'car', 'truck', 'bus', 'train', 'motorcycle', 'bicycle',"ignore"]
         # self.class_names = ['wall', 'floor', 'cabinet', 'bed', 'chair', 'sofa', 'table', 'door', 'window', 'bookshelf', 'picture', 'counter', 'blinds', 'desk', 'shelves', 'curtain', 'dresser', 'pillow', 'mirror', 'floor mat', 'clothes', 'ceiling', 'books', 'refridgerator', 'television', 'paper', 'towel', 'shower curtain', 'box', 'whiteboard', 'person', 'night stand', 'toilet', 'sink', 'lamp', 'bathtub', 'bag', 'otherstructure', 'otherfurniture', 'otherprop',"ignore"]
-        self.class_names     = ["background","LVendo"]
+        # self.class_names     = ["background","LVendo"]
+        self.class_names     = [["road" ,"sidewalk" ,"bus" ,"vegetation" ,"terrain" ,"sky" ,"person" ,'car' ,'building' ,"ignore"]]
     def visualize(self, image_folder, mask_folder, output_folder):
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
@@ -31,19 +32,19 @@ class MaskVisualizer:
                 print(filename)
                 # 获取掩码文件名
             #cityscapes dataset
-            # prefix_len1 = len('frankfurt_000000_000294')  # 设置前缀的长度
-            # prefix_len2 = len('lindau_000000_000019')  # 设置前缀的长度
-            # prefix_len3 = len('munster_000031_000019')  # 设置前缀的长度
-            # for name in os.listdir(mask_folder):
-            #     if name[:prefix_len1] == filename[:prefix_len1] or name[:prefix_len2] == filename[:prefix_len2] or name[:prefix_len3] == filename[:prefix_len3]:
-            #         mask_filename = name
-            #         break
+            prefix_len1 = len('frankfurt_000000_000294')  # 设置前缀的长度
+            prefix_len2 = len('lindau_000000_000019')  # 设置前缀的长度
+            prefix_len3 = len('munster_000031_000019')  # 设置前缀的长度
+            for name in os.listdir(mask_folder):
+                if name[:prefix_len1] == filename[:prefix_len1] or name[:prefix_len2] == filename[:prefix_len2] or name[:prefix_len3] == filename[:prefix_len3]:
+                    mask_filename = name
+                    break
             #nyuv2 dataset
             # mask_filename = os.path.splitext(filename)[0] + '.png'
             # print(mask_filename)
             #camus dataset
-            mask_filename = os.path.splitext(filename)[0] + '.png'
-            print(mask_filename)
+            # mask_filename = os.path.splitext(filename)[0] + '.png'
+            # print(mask_filename)
             # 检查掩码文件是否存在
             if os.path.exists(os.path.join(mask_folder, mask_filename)):
                 # 读取掩码图像
@@ -51,16 +52,17 @@ class MaskVisualizer:
                 # print(mask.shape)
                 # 获取掩码图像中出现的所有类别
                 classes = np.unique(mask)
-                # print(classes)
+                print(classes)
                 # 如果掩码中有类别
                 if len(classes) > 0:
                     # 将掩码图像进行染色
                     color_mask = np.zeros_like(image)
-                    for i in range(len(self.class_names)):
+                    # for i in range(len(self.class_names)):
+                    for i in range(self.num_classes):
                         if i in classes:
                             color_mask[mask == i] = self.colors[i][::-1]
                     # 将染色后的掩码图像与原始图像进行融合
-                    alpha = 0.3
+                    alpha = 0.1
                     blended = cv2.addWeighted(image, alpha, color_mask, 1 - alpha, 0)
                     # 保存融合后的图像
                     output_filename = os.path.join(output_folder, filename)
@@ -77,9 +79,18 @@ if __name__ == '__main__':
     # image_folder = 'Z:/x/dataset/nyuv2/images'
     # mask_folder = 'Z:/x/dataset/nyuv2/labels40'
     # output_folder = 'Z:/x/dataset/nyuv2/colorgroundtruth'
-    image_folder = 'Z:/x/dataset\\Camus\\train_ES_jpg'
-    mask_folder = 'Z:/x/dataset\\Camus\\label_ES_LVepi_png'
+    # image_folder = 'Z:/x/dataset\\Camus\\train_ES_jpg'
+    # mask_folder = 'Z:/x/dataset\\Camus\\label_ES_LVepi_png'
     # mask_folder = 'Z:/x/mycode/MFRAUnet-Camus/miou_out/detection-results'
-    output_folder = 'Z:/x/dataset\\Camus\\ES_LVepi_color'
+    # output_folder = 'Z:/x/dataset\\Camus\\ES_LVepi_color'
+
+    # image_folder = 'Z:/x/dataset\\Camus\\train_ES_jpg'
+    # mask_folder = 'Z:/x/dataset\\Camus\\label_ES_LVepi_png'
+    # output_folder = 'Z:/x/dataset\\Camus\\ES_LVepi_color'
+
+    image_folder = 'Z:/x/Meta_learning/data/cityscapes/color_visual/jpg'
+    mask_folder = 'Z:/x/Meta_learning/data/cityscapes/color_visual/val0'
+    output_folder = 'Z:/x/Meta_learning/data/cityscapes/color_visual/color0'
+
     visualizer = MaskVisualizer()
     visualizer.visualize(image_folder, mask_folder, output_folder)

@@ -8,8 +8,8 @@ def colorize_depth_map(depth_map):
     return colormap
 
 # 读取深度图像
-depth_image = cv2.imread('Z:/x/mycode/MDEASS-Net/miou_out/detection-results-d/frankfurt_000000_000576_leftImg8bit.png', cv2.IMREAD_GRAYSCALE)
-# depth_image = cv2.imread('Z:/x/dataset/cityscapes/disparity/trainval_depth/frankfurt_000000_000576_disparity.png', cv2.IMREAD_GRAYSCALE)
+# depth_image = cv2.imread('Z:/x/mycode/MDEASS-Net/miou_out/detection-results-d/frankfurt_000000_000576_leftImg8bit.png', cv2.IMREAD_GRAYSCALE)
+depth_image = cv2.imread('Z:/x/Meta_learning/data/base_annotation/cityscapes/val/0/frankfurt_000000_000294_gtFine_labelIds.png', cv2.IMREAD_GRAYSCALE)
 # 
 # depth_image = cv2.imread('Z:/x/dataset/nyuv2/nyu_depths/0.png', cv2.IMREAD_GRAYSCALE)
 # depth_image = cv2.imread('Z:/x/mycode/MDEASS-Net_nyu/miou_out/detection-results-d/1448.png', cv2.IMREAD_GRAYSCALE)
@@ -19,7 +19,7 @@ depth_image = cv2.imread('Z:/x/mycode/MDEASS-Net/miou_out/detection-results-d/fr
 
 # 读取原图像
 # old_img = cv2.imread('Z:/x/dataset/nyuv2/images/0.jpg', cv2.IMREAD_COLOR)
-old_img = cv2.imread('Z:/x/dataset/cityscapes/leftImg8bit/trainval_jpg/frankfurt_000000_000576_leftImg8bit.jpg', cv2.IMREAD_COLOR)
+old_img = cv2.imread('Z:/x/Meta_learning/data/cityscapes/trainval_jpg/frankfurt_000000_000294_leftImg8bit.jpg', cv2.IMREAD_COLOR)
 
 # 进行染色
 colorized_image = colorize_depth_map(depth_image)

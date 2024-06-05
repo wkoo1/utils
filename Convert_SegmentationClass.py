@@ -23,7 +23,8 @@ from tqdm import tqdm
 # Out_SegmentationClass_path   = "D:\\oukai\\dataset\\EchoNet-Dynamic\\labels"
 # Origin_SegmentationClass_path   = "D:\\oukai\\dataset\\CamVid\\SegNet-Tutorial\\CamVid\\trainannot"
 # Out_SegmentationClass_path   = "D:\\oukai\\dataset\\IDD_RESIZED\\labels"
-Origin_SegmentationClass_path   = "Z:\\x\\Meta_learning\\data\\pascal\\SegmentationClassAug"
+Origin_SegmentationClass_path   = "Z:\\x\\Meta_learning\\data\\base_annotation\\pascal\\val\\2"
+# Out_SegmentationClass_path   = "Z:\\x\\Meta_learning\\data\\base_annotation\\cityscapes\\train\\1"
 
 
 #-----------------------------------------------------------------------------------#
